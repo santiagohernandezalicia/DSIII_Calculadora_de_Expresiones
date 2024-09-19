@@ -120,20 +120,15 @@ public class Converter {
                 double b = stack.pop();
                 double a = stack.pop();
                 switch (token) {
-                    case "+":
-                        stack.push(a + b);
+                    case "+": stack.push(a + b);
                         break;
-                    case "-":
-                        stack.push(a - b);
+                    case "-": stack.push(a - b);
                         break;
-                    case "*":
-                        stack.push(a * b);
+                    case "*": stack.push(a * b);
                         break;
-                    case "/":
-                        stack.push(a / b);
+                    case "/": stack.push(a / b);
                         break;
-                    case "^":
-                        stack.push(Math.pow(a, b));
+                    case "^": stack.push(Math.pow(a, b));
                         break;
                 }
             }
