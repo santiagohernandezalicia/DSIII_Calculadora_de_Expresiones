@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class Converter {
 
     public static void main(String[] args) {
@@ -16,13 +15,13 @@ public class Converter {
             }
 
             List<String> tokens = getTokens(inputString);
-            System.out.println("Tokens en notación infija: " + Converter.toString(tokens));
+            System.out.println("Expresión inicial (infija): " + Converter.toString(tokens));
 
             List<String> postfix = Converter.toPostfix(tokens);
             System.out.println("Expresión en notación postfija: " + Converter.toString(postfix));
 
-            double result = evaluatePostfix(postfix);
-            System.out.println("Resultado: " + result);
+            double resultado = evaluatePostfix(postfix);
+            System.out.println("Resultado: " + resultado);
         }
     }
 
@@ -110,7 +109,7 @@ public class Converter {
         }
     }
 
-    /* Evaluar la expresión en notación postfija */
+    // Evaluar la expresión en notación postfija 
     public static double evaluatePostfix(List<String> postfix) {
         Stack<Double> stack = new Stack<>();
 
