@@ -117,18 +117,18 @@ public class Converter {
             if (isOperand(token)) {
                 stack.push(Double.parseDouble(token));
             } else if (isOperator(token)) {
-                double b = stack.pop();
-                double a = stack.pop();
+                double n1 = stack.pop();
+                double n2 = stack.pop();
                 switch (token) {
-                    case "+": stack.push(a + b);
+                    case "+": stack.push(n2 + n1);
                         break;
-                    case "-": stack.push(a - b);
+                    case "-": stack.push(n2 - n1);
                         break;
-                    case "*": stack.push(a * b);
+                    case "*": stack.push(n2 * n1);
                         break;
-                    case "/": stack.push(a / b);
+                    case "/": stack.push(n2 / n1);
                         break;
-                    case "^": stack.push(Math.pow(a, b));
+                    case "^": stack.push(Math.pow(n2, n1));
                         break;
                 }
             }
