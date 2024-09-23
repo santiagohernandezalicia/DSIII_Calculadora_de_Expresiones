@@ -1,17 +1,23 @@
 import java.util.*;
+
 public class Converter {
 
     public static void main(String[] args) {
         String inputString;
-
         Scanner keyb = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Introduce una expresion en notacion infija");
+            System.out.println("Introduce una expresion en notacion infija (o escribe 'cerrar' para salir)");
             System.out.print("> ");
             inputString = keyb.nextLine();
-            if (inputString.equalsIgnoreCase("quit")) {
+
+            if (inputString.equalsIgnoreCase("cerrar")) {
                 break;
+            }
+
+            if (!validarEntrada(inputString)) {
+                System.out.println("Error en la expresión (caracteres repetidos o paréntesis incompletos)");
+                continue;
             }
 
             List<String> tokens = getTokens(inputString);
@@ -23,6 +29,32 @@ public class Converter {
             double resultado = evaluatePostfix(postfix);
             System.out.println("Resultado: " + resultado);
         }
+    }
+    // METODO PARA VALIDAR LA EXPRESION
+    public static boolean validarEntrada(String input) {
+        // Verificar que solo tenga números, operadores y paréntesis
+        if (!input.matches("[0-9+\\-*/^() ]+")) {
+            return false;
+        }
+
+        // Verificar operadores repetidos
+        if (input.matches(".*[+\\-*/^]{2,}.*")) {
+            return false;
+        }
+
+        // Verificar que los paréntesis esten cerrados
+        int balance = 0;
+        for (char c : input.toCharArray()) {
+            if (c == '(') {
+                balance++;
+            } else if (c == ')') {
+                balance--;
+            }
+            if (balance < 0) {
+                return false;
+            }
+        }
+        return balance == 0;
     }
 
     /* Regresa true si el token es un operador valido */
@@ -109,7 +141,7 @@ public class Converter {
         }
     }
 
-    // Evaluar la expresión en notación postfija 
+    // Evaluar la expresión en notación postfija
     public static double evaluatePostfix(List<String> postfix) {
         Stack<Double> stack = new Stack<>();
 
